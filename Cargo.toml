@@ -15,7 +15,8 @@ panic-halt = "0.2.0"
 panic-semihosting = "0.5.2"
 
 [dependencies.stm32g0xx-hal]
-features = ["stm32g071"]
+default-features = false
+features = ["rt", "stm32g070"]
 version = "0.0.3"
 
 [profile.release]

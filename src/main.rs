@@ -76,7 +76,7 @@ const APP: () = {
         input_timer.listen();
 
         let mut animation_timer = device.TIM17.timer(&mut rcc);
-        animation_timer.start(2.hz());
+        animation_timer.start(3.hz());
         animation_timer.listen();
 
         let usart = device
