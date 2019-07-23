@@ -1,9 +1,8 @@
 #![no_std]
 #![no_main]
-// #![deny(warnings)]
+#![deny(warnings)]
 
-// extern crate panic_halt;
-extern crate panic_semihosting;
+extern crate panic_halt;
 extern crate stm32g0xx_hal as hal;
 
 mod joystick;
