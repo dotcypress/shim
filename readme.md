@@ -2,7 +2,7 @@
 
 Tiny ARM Cortex-M0+ Development/Prototyping board.
 
-<img src="docs/shim.png" width="40%" />
+<img src="docs/shim.jpg" width="50%" />
 
 ## Features
 

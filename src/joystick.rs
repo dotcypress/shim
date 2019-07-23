@@ -66,11 +66,11 @@ where
 
     fn normalize(val: i16) -> f32 {
         const MAX: f32 = 2048.0;
-        match val {
-            x if (x.abs() < 32) => 0.0,
-            x if (x.abs() < 64) => f32::from(x) / (MAX * 5.0),
-            x if (x.abs() < 512) => f32::from(x) / (MAX * 3.0),
-            x => f32::from(x) / MAX,
+        match (val, val.abs()) {
+            (_, abs) if (abs < 32) => 0.0,
+            (x, abs) if (abs < 64) => f32::from(x) / (MAX * 5.0),
+            (x, abs) if (abs < 512) => f32::from(x) / (MAX * 3.0),
+            (x, _) => f32::from(x) / MAX,
         }
     }
 }
