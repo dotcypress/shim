@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name shim)(type Legacy)(uri ${KIPRJMOD}/shim.lib)(options "")(descr ""))
+  (lib (name shim-rescue)(type Legacy)(uri ${KIPRJMOD}/shim-rescue.lib)(options "")(descr ""))
+)

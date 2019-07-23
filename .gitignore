@@ -1,0 +1,3 @@
+/target
+**/*.rs.bk
+*.kicad_pcb-bak

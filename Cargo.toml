@@ -1,0 +1,25 @@
+[package]
+name = "shim"
+version = "0.0.0"
+edition = "2018"
+authors = ["Vitaly Domnikov <oss@vitaly.codes>"]
+license = "MIT/Apache-2.0"
+
+[dependencies]
+cortex-m = "0.6.0"
+cortex-m-rt = "0.6.8"
+cortex-m-rtfm = "0.4.3"
+cortex-m-semihosting = "0.3.2"
+libm = "0.1.4"
+panic-halt = "0.2.0"
+panic-semihosting = "0.5.2"
+
+[dependencies.stm32g0xx-hal]
+features = ["stm32g071"]
+version = "0.0.3"
+
+[profile.release]
+codegen-units = 1
+debug = false
+incremental = false
+lto = true
