@@ -40,7 +40,7 @@ where
     }
 
     pub fn move_by(&mut self, grip: f32, azimuth: f32, stretch: f32, elevation: f32) {
-        const DIVIDER: f32 = 64.0;
+        const DIVIDER: f32 = 128.0;
 
         let current = self.grip.get_angle();
         self.grip.set_angle(current + grip / DIVIDER);

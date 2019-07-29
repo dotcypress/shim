@@ -38,6 +38,12 @@ type RobotArm = Robot<Pwm1, Pwm2, Pwm3, Pwm4>;
 
 #[rtfm::app(device = hal::stm32)]
 const APP: () = {
+    // Interrupt handlers used to dispatch software tasks
+    extern "C" {
+        fn PVD();
+    }
+
+    // Global resources
     static mut ADC: Adc = ();
     static mut LOG: LogUart = ();
     static mut EXTI: stm32::EXTI = ();
@@ -76,7 +82,7 @@ const APP: () = {
         input_timer.listen();
 
         let mut animation_timer = device.TIM17.timer(&mut rcc);
-        animation_timer.start(3.hz());
+        animation_timer.start(5.hz());
         animation_timer.listen();
 
         let usart = device
@@ -125,10 +131,14 @@ const APP: () = {
         resources.ANIMATION_TIMER.clear_irq();
     }
 
-    #[interrupt(binds = EXTI4_15, resources = [EXTI, LOG, ROBOT])]
+    #[interrupt(binds = EXTI4_15, resources = [EXTI], spawn = [print_state])]
+    fn on_button_press() {
+        resources.EXTI.unpend(Event::GPIO6);
+        spawn.print_state().unwrap();
+    }
+
+    #[task(resources = [LOG, ROBOT])]
     fn print_state() {
         writeln!(resources.LOG, "{}\r", resources.ROBOT).unwrap();
-
-        resources.EXTI.unpend(Event::GPIO6);
     }
 };
